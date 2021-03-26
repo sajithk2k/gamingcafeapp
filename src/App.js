@@ -9,9 +9,6 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import axios from 'axios';
 class App extends Component {
    handleLogin = (response) =>{
-     console.log(response);
-     console.log(response.profileObj);
-     console.log(response.profileObj.email);
      const customer = {
        name: response.profileObj.name,
        email: response.profileObj.email
