@@ -1,16 +1,9 @@
-var mongoose = require ("mongoose");
+const mongoose = require ("mongoose");
 
+const slotSchema = new mongoose.Schema({startTime : String,isBooked : Boolean , bookedBy:{}});
 
-var workStationSchema = new mongoose.Schema({
-    slots:[
-        {
-            startTime : String,
-            endTime : String,
-            isBooked : {type : Boolean, "default" : false},
-            bookedBy : {type : Object, "default" : null}
-
-        }    
-    ],
+const workStationSchema = new mongoose.Schema({
+    slots:[slotSchema],
     name:String,
     pic:String,
     type:String,
@@ -18,11 +11,14 @@ var workStationSchema = new mongoose.Schema({
     {
         games:[]
     },
-    // timestamps : true
-
     
     
-});
+},{ timestamps : true});
 mongoose.model("WorkStation",workStationSchema);
 
 module.exports= mongoose.model("WorkStation", workStationSchema);
+
+//{"startTime" : "9","isBooked" : false,"bookedBy" : {}}
+// startTime : String,
+// isBooked : {type : Boolean, "default" : false},
+// bookedBy : {type : Object, "default" : null}
