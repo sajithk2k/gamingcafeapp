@@ -9,9 +9,9 @@ router.route('/').get((req, res) => {
   
 router.route('/add').post((req, res) => {
     
-    // let name = req.body.name
-    // let pic = req.body.pic
-    // let type = req.body.type
+    let name = req.body.name
+    let pic = req.body.pic
+    let type = req.body.type
 
 
     const newWorkStation = new workStation(req.body);
@@ -21,6 +21,32 @@ router.route('/add').post((req, res) => {
       .then(() => res.json('Work Station added'))
       .catch(err => res.status(400).json('Error: ' + err));
 });
+
+router.route('/:id').get((req, res) => {
+  workStation.findById(req.params.id)
+    .then(workstation => res.json(workstation))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+router.route('/:id').delete((req, res) => {
+  workStation.findByIdAndDelete(req.params.id)
+    .then(() => res.json('workstation deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+router.route('/update/:id').post((req, res) => {
+  workStation.findById(req.params.id)
+    .then(workstation => {
+      workstation.slots.startTime = req.body.slots.startTime;
+      workstation.slots.endTime = req.body.slots.endTime;
+      workstation.slots.isBooked = Number(req.body.slots.isBooked);
+      workstation.slots.bookedBy = Date.parse(req.slots.body.bookedBy);
+
+      workstation.save()
+        .then(() => res.json('workstation updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 
 // slots:[
 //     {
@@ -37,4 +63,5 @@ router.route('/add').post((req, res) => {
 // config:{
 //     games:[]
 //     }
+
 module.exports = router;

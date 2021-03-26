@@ -14,9 +14,13 @@ var workStationSchema = new mongoose.Schema({
     name:String,
     pic:String,
     type:String,
-    config:{
+    config:
+    {
         games:[]
-        }
+    },
+    // timestamps : true
+
+    
     
 });
 mongoose.model("WorkStation",workStationSchema);

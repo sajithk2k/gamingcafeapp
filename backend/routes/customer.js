@@ -1,5 +1,5 @@
 const router = require('express').Router();
-let Customer = require('../models/customer');
+const Customer = require('../models/customer');
 
 router.route('/').get((req, res) => {
   Customer.find()
@@ -14,7 +14,7 @@ router.route('/add').post((req, res) => {
   const newCustomer = new Customer({name,email});
 
   newCustomer.save()
-    .then(() => res.json('Customer added!'))
+    .then(() => res.json('Customer added!'+ req.body))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
