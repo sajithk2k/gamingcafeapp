@@ -40,6 +40,6 @@ class App extends Component {
   );
       }
 }
-
+console.log("hola")
 export default App;
 
