@@ -35,10 +35,13 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
   workStation.findById(req.params.id)
     .then(workstation => {
-      workstation.slots.startTime = req.body.slots.startTime;
-      workstation.slots.endTime = req.body.slots.endTime;
-      workstation.slots.isBooked = Number(req.body.slots.isBooked);
-      workstation.slots.bookedBy = Date.parse(req.slots.body.bookedBy);
+      workstation.slots = req.body.slots;
+      workstation.config = req.body.config;
+      workstation.rent = req.body.rent;
+      workstation.name = req.body.name;
+      workstation.pic = req.body.pic;
+      
+
 
       workstation.save()
         .then(() => res.json('workstation updated!'))

@@ -1,8 +1,9 @@
 const mongoose = require ("mongoose");
-
+const workstationModel = require('./workstation');
+// const workStationSchema = mongoose.Schema(workstationModel);
 const dateSchema = new mongoose.Schema({
     workStations:[],
-    date:Date,
+    date:String,
     
 });
 mongoose.model("Date",dateSchema);

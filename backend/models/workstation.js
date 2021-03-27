@@ -7,6 +7,7 @@ const workStationSchema = new mongoose.Schema({
     name:String,
     pic:String,
     type:String,
+    rent:Number,
     config:
     {
         games:[]
