@@ -52,7 +52,7 @@ class Booking extends Component {
              return(
             <li  className="flex-item ">
             <img className="" src={d.pic} />
-                <div className="caption ">
+                <div className="caption">
                     <h5 className="bolder">{d.name}</h5>
                     <p>Rs.{d.rent}/hr</p>
                 </div>
