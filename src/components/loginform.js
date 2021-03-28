@@ -17,7 +17,7 @@ class LoginForm extends Component {
       }
     render() { 
         return (
-                <div class="login-box">
+                <div class="contact-form">
                     <h1>Login</h1>
                     <div class="textbox">
 	                    <i class="fas fa-user"></i>
