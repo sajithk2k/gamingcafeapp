@@ -26,9 +26,9 @@ class Booking extends Component {
       }
       bookSlot(msg,num){
         //   this.setState({workstation:d});
-        if(msg.slots[num].isBooked){alert("Slot is booked");
+        if(msg.slots[num].isBooked){alert("Slot not available");
         return}
-        alert("Pay Rs."+msg.rent+"to confirm booking.")
+        alert("Pay Rs."+msg.rent+" to confirm booking.")
         alert("Slot Booked!")
         console.log(typeof(num));
             console.log(msg.slots[num].isBooked);
