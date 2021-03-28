@@ -26,6 +26,9 @@ app.use('/workstation', workStationRouter);
 const dateRouter = require('./routes/date');
 app.use('/date', dateRouter);
 
+app.get('/', function (req, res) {
+  res.redirect('/login');
+})
 app.listen(port,() => {
     console.log('Server is running on port:',port);
 });

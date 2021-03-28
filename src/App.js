@@ -17,8 +17,7 @@ class App extends Component {
         <Navbar />
         {/* <LoginForm />
         <SignUpForm /> */}
-
-        <LoginForm />
+        <Route path ="/login" component = {LoginForm} />
         <Route path ="/booking" component = {Booking} />
       </div>
     </Router>

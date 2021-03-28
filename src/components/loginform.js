@@ -14,6 +14,7 @@ class LoginForm extends Component {
         }
         axios.post('http://localhost:5000/customer/add',customer)
            .then(res => console.log(res.data));
+           alert("Logged In!")
       }
     render() { 
         return (
