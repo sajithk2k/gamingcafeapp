@@ -1,9 +1,11 @@
-var mongoose = require ("mongoose");
+const mongoose = require ("mongoose");
 
-var CustomerSchema = new mongoose.Schema({
+const CustomerSchema = new mongoose.Schema({
     name: String,
-    email: String
-});
+    email: String,
+    slotsBooked : [],
+    
+},{ timestamps : true});
 mongoose.model("Customer",CustomerSchema);
 
 module.exports= mongoose.model("Customer", CustomerSchema);
