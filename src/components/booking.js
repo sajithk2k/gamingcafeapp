@@ -56,6 +56,13 @@ class Booking extends Component {
                     <h5 className="bolder">{d.name}</h5>
                     <p>Rs.{d.rent}/hr</p>
                 </div>
+                <DropdownButton id="dropdown-basic-button" title="Games Available">
+                    {d.config.games.map((game) =>{
+                        return(
+                            <Dropdown.Item>{game}</Dropdown.Item>
+                       )
+                    })}
+                </DropdownButton>
                 {/* <button onClick={() =>this.bookSlot(d)}>Testing</button> */}
                 <DropdownButton id="dropdown-basic-button" title="Book a Slot">
                 <Dropdown.Item href="#/action-1" onClick={() =>this.bookSlot(d,0)} className = {d.slots[0].isBooked?'red-color':'green-color'}>09:00-10:00</Dropdown.Item>
