@@ -23,7 +23,7 @@ class App extends Component {
   render() {
   return (
     <Router>
-      <div>
+      <div className="container">
         <Navbar />
         {/* <LoginForm />
         <SignUpForm /> */}
@@ -40,6 +40,5 @@ class App extends Component {
   );
       }
 }
-console.log("hola")
 export default App;
 
