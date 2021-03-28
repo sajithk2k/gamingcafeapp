@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './components/navbar.js';
+import Booking from './components/booking.js';
 import './App.css';
 import LoginForm from './components/loginform.js';
 import SignUpForm from './components/signupform.js';
@@ -33,11 +34,12 @@ class App extends Component {
         onFailure={this.handleLogin}
         cookiePolicy={'single_host_origin'}
         />
+        <Route path ="/booking" component = {Booking} />
       </div>
     </Router>
   );
       }
 }
-
+console.log("hola")
 export default App;
 
