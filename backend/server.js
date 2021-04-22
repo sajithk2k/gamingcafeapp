@@ -26,6 +26,9 @@ app.use('/workstation', workStationRouter);
 const dateRouter = require('./routes/date');
 app.use('/date', dateRouter);
 
+const requestRouter = require('./routes/request');
+app.use('/request',requestRouter);
+
 app.get('/', function (req, res) {
   res.redirect('/login');
 })

@@ -6,6 +6,7 @@ import './App.css';
 import LoginForm from './components/loginform.js';
 import Inventory from './components/inventory.js';
 import Staff from './components/staff.js'
+import Request from './components/request.js'
 import SignUpForm from './components/signupform.js';
 import GoogleLogin from 'react-google-login';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -25,6 +26,7 @@ class App extends Component {
         <Route path ="/dashboard" component = {Dashboard} />
         <Route path ="/inventory" component = {Inventory} />
         <Route path ="/staff" component = {Staff} />
+        <Route path ="/request" component ={Request} />
       </div>
     </Router>
   );

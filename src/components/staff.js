@@ -7,6 +7,7 @@ class Staff extends Component {
             <div>
                 <Navbar2 />
                 <h3>This will be the Staff page!</h3>
+                
             </div>
         );
     }

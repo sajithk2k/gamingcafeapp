@@ -5,6 +5,7 @@ class Dashboard extends Component {
     render() { 
         return(
                 <Navbar2 />
+                
         );
     }
 }
