@@ -84,7 +84,33 @@ router.post("/login", (req, res) => {
     });
   });
 });
+router.post("/glogin", (req, res) => {
+  const { email, Name } = req.body;
 
+  // basic validation
+  // if (!email || !password) {
+  //   return res.status(400).json({ msg: "Please enter all fields" });
+  // }
+  //check for existing user
+  Customer.findOne({ email }).then((user) => {
+    if (!user){
+      const name = req.body.name;
+      const email = req.body.email;
+
+      const newCustomer = new Customer({name,email});
+
+      newCustomer.save()
+        .then(() => res.json('Customer added!'+ req.body))
+        .catch(err => res.status(400).json('Error: ' + err));
+    }
+
+
+    const sessUser = { id: user.id, name: user.name, email: user.email };
+    req.session.user = sessUser; // Auto saves session data in mongo store
+
+    res.json({ msg: " Logged In Successfully", sessUser }); // sends cookie with sessionID automatically in response
+    });
+});
 router.delete("/logout", (req, res) => {
   req.session.destroy((err) => {
     //delete session data from store, using sessionID in cookie
