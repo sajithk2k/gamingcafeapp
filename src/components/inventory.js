@@ -40,6 +40,7 @@ class Inventory extends Component {
             axios.post('http://localhost:5000/workstation/update/'+msg1._id,msg1)
            .then(res => console.log(res.data));
       }
+<<<<<<< HEAD
         //   msg.slots[num].isBooked = false;
         //   console.log(msg);
 
@@ -50,6 +51,47 @@ class Inventory extends Component {
             <div>
         <ul id="removeBullets" className="productGrid flex-container wrap">
              {data.map((d) => {
+=======
+      onSubmit = () => {
+        if(document.getElementById("name").value!="" && document.getElementById("type").value!="" ){
+         let pict="";
+          let type=document.getElementById("type").value
+         if(type=="PC"){
+             pict="https://www.designbust.com/download/437/png/gaming_pc_transparent_icon256.png"
+         }else if(type=="Console"){
+            pict="https://www.designbust.com/download/464/png/sony_playstation_transparent256.png"
+        }else{
+             alert("please type PC or Console in type of system field")
+             document.getElementById("type").value=""
+             return;
+         }
+        const newRequest ={
+          name: document.getElementById("name").value,
+          pic: pict,
+          type: document.getElementById("type").value
+
+        }
+        axios.post('http://localhost:5000/workstation/add',newRequest)
+             .then(res => console.log(res.data));
+             alert("Request Added!");
+             axios.get(`http://localhost:5000/workstation/`)
+             .then(res => {
+               const systems = res.data;
+               this.setState({ systems:systems  });
+             })
+            }else{
+                alert("please enter name of workstation and type of workstation")
+            }
+        }
+    render() { 
+        var data=this.state.systems;
+        return (
+
+                <div>
+                <ul id="removeBullets" className="productGrid flex-container wrap"> <Navbar2 />
+                <h3>This will be the Inventory page!</h3>
+                {data.map((d) => {
+>>>>>>> 31ada51e661dd1219d7676e4715d9d0d490ad0e5
              return(
             <li  className="flex-item ">
             <img className="" src={d.pic} />
@@ -77,11 +119,29 @@ class Inventory extends Component {
                 <Dropdown.Item href="#/action-3" onClick={() =>this.bookSlot(d,8)}className = {d.slots[8].isBooked?'red-color':'green-color'}>17:00-18:00</Dropdown.Item>
                 </DropdownButton>
             </li>)
+<<<<<<< HEAD
         })}
         </ul>
         </div>
         </div>
     );
+=======
+        })}</ul>
+
+            <div>
+            <form >
+                <label>Name of Workstation to be added</label>
+            <input type="text" id="name" />
+            <label>Add type of workstation</label>
+            <input type="text" id="type" />
+            <label>Rent amount</label>
+            <input type="text" id="rent" />
+            <Button href="/inventory" onClick={this.onSubmit} className="btn" type="submit">Add system</Button>
+            </form>
+            </div>
+            </div>
+        );
+>>>>>>> 31ada51e661dd1219d7676e4715d9d0d490ad0e5
     }
 }
   
