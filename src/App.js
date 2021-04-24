@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Navbar from './components/navbar.js';
 import Booking from './components/booking.js';
-// import Dashboard from './components/dashboard.js';
+import Dashboard from './components/dashboard.js';
 import './App.css';
 import LoginForm from './components/loginform.js';
-// import Inventory from './components/inventory.js';
-// import Staff from './components/staff.js'
+import Inventory from './components/inventory.js';
+import Staff from './components/staff.js'
 import Request from './components/request.js'
 import SignUpForm from './components/signupform.js';
 import GoogleLogin from 'react-google-login';
@@ -23,10 +23,10 @@ class App extends Component {
         <SignUpForm /> */}
         <Route path ="/login" component = {LoginForm} />
         <Route path ="/booking" component = {Booking} />
-        {/* <Route path ="/dashboard" component = {Dashboard} /> */}
-        {/* <Route path ="/inventory" component = {Inventory} /> */}
-        {/* <Route path ="/staff" component = {Staff} /> */}
-        {/* <Route path ="/request" component ={Request} /> */}
+        <Route path ="/dashboard" component = {Dashboard} />
+        <Route path ="/inventory" component = {Inventory} />
+        <Route path ="/staff" component = {Staff} />
+        <Route path ="/request" component ={Request} />
       </div>
     </Router>
   );
