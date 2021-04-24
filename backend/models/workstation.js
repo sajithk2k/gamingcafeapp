@@ -3,10 +3,10 @@ const mongoose = require ("mongoose");
 const slotSchema = new mongoose.Schema({startTime : String,isBooked : Boolean , bookedBy:{}});
 
 const workStationSchema = new mongoose.Schema({
-    slots:[slotSchema],
+    slots:[],
     name:String,
     pic:String,
-    type:String,
+    date:String,
     rent:Number,
     config:
     {
