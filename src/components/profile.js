@@ -13,26 +13,30 @@ import AuthApi from '../utils/AuthApi';
 // }
  
 // export default Dashboard;
-import { authenticate, isAuth ,signout } from '../auth/helpers';
-export default function Dashboard() {
-    const authApi = useContext(AuthApi);
-    
+import { authenticate, isAuth ,signout,getCookie } from '../auth/helpers';
+import { useHistory } from 'react-router-dom';
+import cookie from 'js-cookie';
+export default function Profile() {
+    let history = useHistory();
+    // const authApi = useContext(AuthApi);
+    const cust = cookie.get('user');
+    const mer = JSON.parse(localStorage.getItem('user'));
+    console.log(cust)
+    console.log(mer)
     const handleSignout = () => {
-        console.log("asd " + authApi.auth)
-    // axios.get
-    let msg = "";
-    
-       console.log(msg)
-       
+        // console.log("asd " + authApi.auth  
       signout(() => {
         axios.delete('http://localhost:5000/customer/logout')
        .then(res => console.log(res.data));
+       history.push('/signin')
       });
     };
     return (
       <div>
-        <h1>Dashboard</h1>
+        <h1>Hi {String(mer.name)}!</h1>
+        {/* <div>{String(cust)}</div> */}
         <button onClick={handleSignout}>Logout</button>
+
       </div>
     );
   }

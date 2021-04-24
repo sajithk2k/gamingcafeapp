@@ -1,7 +1,10 @@
 const router = require('express').Router();
-const bcrypt = require("bcryptjs");
 const express = require("express");
 const Customer = require('../models/customer');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+// const keys = require('../../config/keys');
+const passport = require('passport');
 
 router.route('/').get((req, res) => {
   Customer.find()
@@ -80,7 +83,7 @@ router.post("/login", (req, res) => {
       const sessUser = { id: user.id, name: user.name, email: user.email };
       req.session.user = sessUser; // Auto saves session data in mongo store
 
-      res.json({ msg: " Logged In Successfully", sessUser }); // sends cookie with sessionID automatically in response
+      res.json({ msg: " Logged In Successfully", auth : true ,sessUser }); // sends cookie with sessionID automatically in response
     });
   });
 });
@@ -107,6 +110,18 @@ router.post("/glogin", (req, res) => {
 
     const sessUser = { id: user.id, name: user.name, email: user.email };
     req.session.user = sessUser; // Auto saves session data in mongo store
+    // const payload = { id: user.id, name: user.name, email: user.email  };
+    // jwt.sign(
+    //   payload,
+    //   { expiresIn: 3600 },
+    //   (err, token) => {
+    //     res.json({
+    //       success: true,
+    //       token: 'Bearer ' + token
+    //     });
+    //   }
+    // );
+
 
     res.json({ msg: " Logged In Successfully", sessUser }); // sends cookie with sessionID automatically in response
     });

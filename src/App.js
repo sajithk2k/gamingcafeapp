@@ -26,12 +26,7 @@ function App() {
         {/* <LoginForm />
         <SignUpForm /> */}
         <Routes/>
-        <Route path ="/login" component = {LoginForm} />
-        <Route path ="/booking" component = {Booking} />
-        <Route path ="/dashboard" component = {Dashboard} />
-        <Route path ="/inventory" component = {Inventory} />
-        <Route path ="/staff" component = {Staff} />
-        <Route path ="/request" component ={Request} />
+        
       </div>
     </Router>
     </AuthApi.Provider>
