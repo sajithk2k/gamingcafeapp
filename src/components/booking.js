@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 import './booking.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 class Booking extends Component {
     constructor(props) {
