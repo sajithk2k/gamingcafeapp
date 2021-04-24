@@ -101,8 +101,13 @@ app.use('/workstation', workStationRouter);
 const dateRouter = require('./routes/date');
 app.use('/date', dateRouter);
 
+<<<<<<< HEAD
 const reportRouter = require('./routes/report');
 app.use('/report', reportRouter);
+=======
+const requestRouter = require('./routes/request');
+app.use('/request',requestRouter);
+>>>>>>> dashboard
 
 app.get('/', function (req, res) {
   res.redirect('/login');
