@@ -98,7 +98,7 @@ class Inventory extends Component {
             </li>)
         })}</ul>
 
-            <div>
+
             <form >
                 <label>Name of Workstation to be added</label>
             <input type="text" id="name" />
@@ -108,7 +108,6 @@ class Inventory extends Component {
             <input type="text" id="rent" />
             <Button href="/inventory" onClick={this.onSubmit} className="btn" type="submit">Add system</Button>
             </form>
-            </div>
             </div>
         );
     }

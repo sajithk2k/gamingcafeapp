@@ -44,6 +44,20 @@ class Booking extends Component {
 
     render() { 
         var data=this.state.systems;
+        var date1=new Date();
+        var date2=new Date();
+        date2.setDate(date2.getDate()+1);
+        var date3=new Date();
+        date3.setDate(date2.getDate()+2);
+        var date4=new Date();
+        date4.setDate(date2.getDate()+3);
+        var date5=new Date();
+        date5.setDate(date2.getDate()+4);
+        var date6=new Date();
+        date6.setDate(date2.getDate()+5);
+        var date7=new Date();
+        date7.setDate(date2.getDate()+6);
+
         // console.log(data[0]);
         return ( <div>
             <div>
@@ -79,6 +93,16 @@ class Booking extends Component {
         })}
         </ul>
         </div>
+         <DropdownButton id="dropdown-basic-button" title="Select a Date">
+                <Dropdown.Item href="#/action-1"  className = {'green-color'}>{date1.toISOString().slice(0, 10)}</Dropdown.Item>
+                <Dropdown.Item href="#/action-2"  className = {'green-color'}>{date2.toISOString().slice(0, 10)}</Dropdown.Item>
+                <Dropdown.Item href="#/action-3"  className = {'green-color'}>{date3.toISOString().slice(0, 10)}</Dropdown.Item>
+                <Dropdown.Item href="#/action-3"  className = {'green-color'}>{date4.toISOString().slice(0, 10)}</Dropdown.Item>
+                <Dropdown.Item href="#/action-3"  className = {'green-color'}>{date5.toISOString().slice(0, 10)}</Dropdown.Item>
+                <Dropdown.Item href="#/action-3"  className = {'green-color'}>{date6.toISOString().slice(0, 10)}</Dropdown.Item>
+                <Dropdown.Item href="#/action-3"  className = {'green-color'}>{date7.toISOString().slice(0, 10)}</Dropdown.Item>
+
+                </DropdownButton>
         </div>
     );
     }
