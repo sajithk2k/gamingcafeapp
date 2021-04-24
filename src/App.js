@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import Navbar from './components/navbar.js';
 import Booking from './components/booking.js';
 import Dashboard from './components/dashboard.js';
@@ -12,15 +12,20 @@ import GoogleLogin from 'react-google-login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 
-class App extends Component {
-   
-  render() {
+import Routes from './routes/Routes';
+import AuthApi from './utils/AuthApi';
+
+function App() {
+  const [auth, setAuth] = useState(false); 
+  
   return (
+    <AuthApi.Provider value={{ auth, setAuth }}>
     <Router>
       <div>
-        {/* <Navbar /> */}
+        <Navbar />
         {/* <LoginForm />
         <SignUpForm /> */}
+        <Routes/>
         <Route path ="/login" component = {LoginForm} />
         <Route path ="/booking" component = {Booking} />
         <Route path ="/dashboard" component = {Dashboard} />
@@ -29,7 +34,8 @@ class App extends Component {
         <Route path ="/request" component ={Request} />
       </div>
     </Router>
+    </AuthApi.Provider>
   );
-      }
+  
 }
 export default App;

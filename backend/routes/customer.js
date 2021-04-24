@@ -112,11 +112,12 @@ router.post("/glogin", (req, res) => {
     });
 });
 router.delete("/logout", (req, res) => {
+  console.log(req.session)
   req.session.destroy((err) => {
     //delete session data from store, using sessionID in cookie
     if (err) throw err;
     res.clearCookie("session-id"); // clears cookie containing expired sessionID
-    res.send("Logged out successfully");
+    res.json({ msg: " Logged out " })
   });
 }); 
 
