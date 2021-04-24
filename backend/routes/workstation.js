@@ -8,13 +8,65 @@ router.route('/').get((req, res) => {
   });
   
 router.route('/add').post((req, res) => {
-    
-    let name = req.body.name
-    let pic = req.body.pic
-    let type = req.body.type
+    let slots=[
+      {
+      startTime:"9AM",
+      isBooked: false
+        },
+      {
+      startTime:"10AM",
+      isBooked: false
+        },
+        {
+          startTime:"11AM",
+          isBooked: false
+            },
+            {
+              startTime:"12PM",
+              isBooked: false
+                },
+                {
+                  startTime:"1PM",
+                  isBooked: false
+                    },
+                    {
+                      startTime:"2PM",
+                      isBooked: false
+                        },
+                        {
+                          startTime:"3PM",
+                          isBooked: false
+                            },
+                            {
+                              startTime:"4PM",
+                              isBooked: false
+                                },
+                                {
+                                  startTime:"5PM",
+                                  isBooked: false
+                                    }
+  ]
+    let games= [
+      "Red Dead Redemption 2",
+      "FIFA 2021",
+      "NBA 2k21",
+      "Spiderman",
+      "GTA V",
+      "CS:GO"
+    ]
 
 
-    const newWorkStation = new workStation(req.body);
+    const newWorkStation = new workStation({
+      slots: slots,
+      name:req.body.name,
+      pic:req.body.pic,
+      date:req.body.date,
+      rent:req.body.rent,
+      config:
+      {
+          games:games
+      }
+    })
     // workstat = req.body   
   
     newWorkStation.save()
@@ -40,6 +92,7 @@ router.route('/update/:id').post((req, res) => {
       workstation.rent = req.body.rent;
       workstation.name = req.body.name;
       workstation.pic = req.body.pic;
+      workstation.date = req.body.date;
       
 
 
