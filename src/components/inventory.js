@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './inventory.css';
 import Navbar2 from './navbar2.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -107,7 +108,7 @@ class Inventory extends Component {
         })}</ul>
             </div>
             <div>
-            <form >
+            <div class="contact-form" >
                 <label>Name of Workstation to be added</label>
             <input type="text" id="name" />
             <label>Add type of workstation</label>
@@ -117,7 +118,7 @@ class Inventory extends Component {
             <label>Rent amount</label>
             <input type="text" id="rent" />
             <Button href="/inventory" onClick={this.onSubmit} className="btn" type="submit">Add system</Button>
-            </form>
+            </div>
             </div>
             </div>
         );
