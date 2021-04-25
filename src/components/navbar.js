@@ -13,13 +13,13 @@ class Navbar extends Component {
                 <a className="nav-link" aria-current="page" href="#">Sign Up</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/login">Login</a>
+                <a className="nav-link" href="/signin">Login</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/booking">Book Slots</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Profile</a>
+                <a className="nav-link" href="/profile">Profile</a>
               </li>
             </ul>
           </div>
