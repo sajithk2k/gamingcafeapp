@@ -18,7 +18,20 @@ class Inventory extends Component {
         this.bookSlot = this.bookSlot.bind(this);
       }
     //'http://localhost:5000/workstation'
-      
+     onDelete(d){
+        console.log(d);
+        console.log(d._id);
+        axios.delete(`http://localhost:5000/workstation/${d._id}`)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+       axios.get(`http://localhost:5000/workstation/`)
+    .then(res => {
+      const systems = res.data;
+      this.setState({ systems:systems });
+    })
+    })
+  }
     componentDidMount() {
         const apiUrl = 'http://localhost:5000/workstation/';
         fetch(apiUrl)
@@ -41,23 +54,17 @@ class Inventory extends Component {
            .then(res => console.log(res.data));
       }
       onSubmit = () => {
-        if(document.getElementById("name").value!="" && document.getElementById("type").value!="" ){
-         let pict="";
-          let type=document.getElementById("type").value
-         if(type=="PC"){
-             pict="https://www.designbust.com/download/437/png/gaming_pc_transparent_icon256.png"
-         }else if(type=="Console"){
-            pict="https://www.designbust.com/download/464/png/sony_playstation_transparent256.png"
-        }else{
-             alert("please type PC or Console in type of system field")
-             document.getElementById("type").value=""
-             return;
-         }
+        var name=document.getElementById("name").value
+        var pic=document.getElementById("pic").value
+        var type= document.getElementById("type").value
+        var rent=document.getElementById("rent").value
+        if(name!=""&&type!=""&&rent!="" ){
+         
         const newRequest ={
-          name: document.getElementById("name").value,
-          pic: pict,
-          type: document.getElementById("type").value
-
+          name: name,
+          pic: pic,
+          type: type,
+            rent: Number(rent)
         }
         axios.post('http://localhost:5000/workstation/add',newRequest)
              .then(res => console.log(res.data));
@@ -95,18 +102,7 @@ class Inventory extends Component {
                        )
                     })}
                 </DropdownButton>
-                {/* <button onClick={() =>this.bookSlot(d)}>Testing</button> */}
-                <DropdownButton id="dropdown-basic-button" title="Book a Slot">
-                <Dropdown.Item href="#/action-1" onClick={() =>this.bookSlot(d,0)} className = {d.slots[0].isBooked?'red-color':'green-color'}>09:00-10:00</Dropdown.Item>
-                <Dropdown.Item href="#/action-2" onClick={() =>this.bookSlot(d,1)} className = {d.slots[1].isBooked?'red-color':'green-color'}>10:00-11:00</Dropdown.Item>
-                <Dropdown.Item href="#/action-3" onClick={() =>this.bookSlot(d,2)} className = {d.slots[2].isBooked?'red-color':'green-color'}>11:00-12:00</Dropdown.Item>
-                <Dropdown.Item href="#/action-3" onClick={() =>this.bookSlot(d,3)} className = {d.slots[3].isBooked?'red-color':'green-color'}>12:00-13:00</Dropdown.Item>
-                <Dropdown.Item href="#/action-3" onClick={() =>this.bookSlot(d,4)}className = {d.slots[4].isBooked?'red-color':'green-color'}>13:00-14:00</Dropdown.Item>
-                <Dropdown.Item href="#/action-3" onClick={() =>this.bookSlot(d,5)}className = {d.slots[5].isBooked?'red-color':'green-color'}>14:00-15:00</Dropdown.Item>
-                <Dropdown.Item href="#/action-3" onClick={() =>this.bookSlot(d,6)}className = {d.slots[6].isBooked?'red-color':'green-color'}>15:00-16:00</Dropdown.Item>
-                <Dropdown.Item href="#/action-3" onClick={() =>this.bookSlot(d,7)} className = {d.slots[7].isBooked?'red-color':'green-color'}>16:00-17:00</Dropdown.Item>
-                <Dropdown.Item href="#/action-3" onClick={() =>this.bookSlot(d,8)}className = {d.slots[8].isBooked?'red-color':'green-color'}>17:00-18:00</Dropdown.Item>
-                </DropdownButton>
+                <Button onClick={() =>this.onDelete(d)} className="btn">Delete Worktation</Button>
             </li>)
         })}</ul>
             </div>
@@ -116,6 +112,8 @@ class Inventory extends Component {
             <input type="text" id="name" />
             <label>Add type of workstation</label>
             <input type="text" id="type" />
+            <label>pic url</label>
+            <input type="text" id="pic" />
             <label>Rent amount</label>
             <input type="text" id="rent" />
             <Button href="/inventory" onClick={this.onSubmit} className="btn" type="submit">Add system</Button>
