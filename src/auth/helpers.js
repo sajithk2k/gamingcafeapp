@@ -2,7 +2,7 @@ import cookie from 'js-cookie';
 
 // set in cookie
 export const setCookie = (key, value) => {
-    if (window !== 'undefined') {
+    if (window != 'undefined') {
         cookie.set(key, value, {
             expires: 1
         });
@@ -10,7 +10,7 @@ export const setCookie = (key, value) => {
 };
 // remove from cookie
 export const removeCookie = key => {
-    if (window !== 'undefined') {
+    if (window != 'undefined') {
         cookie.remove(key, {
             expires: 1
         });
@@ -19,19 +19,19 @@ export const removeCookie = key => {
 // get from cookie such as stored token
 // will be useful when we need to make request to server with token
 export const getCookie = key => {
-    if (window !== 'undefined') {
+    if (window != 'undefined') {
         return cookie.get(key);
     }
 };
 // set in localstorage
 export const setLocalStorage = (key, value) => {
-    if (window !== 'undefined') {
+    if (window != 'undefined') {
         localStorage.setItem(key, JSON.stringify(value));
     }
 };
 // remove from localstorage
 export const removeLocalStorage = key => {
-    if (window !== 'undefined') {
+    if (window !='undefined') {
         localStorage.removeItem(key);
     }
 };
@@ -47,7 +47,7 @@ export const authenticate = (response,customer, next) => {
 };
 // access user info from localstorage
 export const isAuth = () => {
-    if (window !== 'undefined') {
+    if (window != 'undefined') {
         const cookieChecked = getCookie('token');
         if (cookieChecked) {
             if (localStorage.getItem('user')) {
@@ -59,7 +59,7 @@ export const isAuth = () => {
     }
 };
 export const isAdmin = () => {
-    if (window !== 'undefined') {
+    if (window !='undefined') {
         const cookieChecked = getCookie('token');
         if (cookieChecked) {
             if (localStorage.getItem('user')) {
