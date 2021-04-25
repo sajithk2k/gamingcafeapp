@@ -23,6 +23,7 @@ function Routes() {
   
   return (
     <Switch>
+      
       <RouteRegisteration
         path="/signin"
         component={SignIn}

@@ -95,21 +95,28 @@ router.post("/glogin", (req, res) => {
   //   return res.status(400).json({ msg: "Please enter all fields" });
   // }
   //check for existing user
+  let sessUser = {};
   Customer.findOne({ email }).then((user) => {
     if (!user){
       const name = req.body.name;
       const email = req.body.email;
-
-      const newCustomer = new Customer({name,email});
+      const slotsBooked = [];
+      const newCustomer = new Customer({name,email,slotsBooked});
 
       newCustomer.save()
         .then(() => res.json('Customer added!'+ req.body))
         .catch(err => res.status(400).json('Error: ' + err));
+      
+      sessUser = {name,email};
     }
 
-
-    const sessUser = { id: user.id, name: user.name, email: user.email };
-    req.session.user = sessUser; // Auto saves session data in mongo store
+    else{
+      sessUser = { name: user.name, email: user.email };
+      // Auto saves session data in mongo store
+    }
+      
+    req.session.user = sessUser;
+    
     // const payload = { id: user.id, name: user.name, email: user.email  };
     // jwt.sign(
     //   payload,
@@ -147,19 +154,22 @@ router.get("/authchecker", (req, res) => {
 });
 
 router.post("/bookSlot",(req,res)=> {
-  const sessUser = req.session.user;
+  // const sessUser = req.session.user;
+  console.log(req.body.slot)
   slot = req.body.slot;
-  Customer.findOne({ email : sessUser.email }).then((user) => {
-  console.log(user.slotsBooked);
+  Customer.findOne({ email : req.body.email }).then((user) => {
+  // console.log(user.slotsBooked);
   console.log(slot)
-  
-  slots = user.slotsBooked;
+  if(user.slotsBooked)
+    slots = user.slotsBooked;
+  else
+    slots= []
   if(slots.length == 0)
     slots = [slot]
   else
     slots.push(slot)
   user.slotsBooked = slots;
-  console.log(user.slotsBooked)
+  // console.log(user.slotsBooked)
   user.save()
       .then(() => res.json('Customer updated!'))
       .catch(err => res.status(400).json('Error: ' + err));

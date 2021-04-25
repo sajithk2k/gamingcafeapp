@@ -125,7 +125,17 @@ class Booking extends Component {
             console.log(msg1._id);
             await axios.post('http://localhost:5000/workstation/update/'+msg1._id,msg1)
            .then(res => console.log(res.data));
-        //    await axios.post('http://localhost:5000/customer/bookSlot')
+
+
+           const mer = JSON.parse(localStorage.getItem('user'));
+           const userEmail = mer.email;
+           const bookedSlot = {date : date , workstation : msg._id , time : msg.slots[num].startTime}
+            const newSlot = {email : userEmail,slot : bookedSlot};
+            console.log(newSlot)
+           await axios.post('http://localhost:5000/customer/bookSlot',newSlot).then(res => console.log(res.data));
+
+
+           
            const apiUrl = 'http://localhost:5000/workstation/';
            fetch(apiUrl)
              .then((response) => response.json())

@@ -5,8 +5,7 @@ const CustomerSchema = new mongoose.Schema({
     name: String,
     email: String,
     password : String,
-    Date : [{"Date" : String , "slotsBooked" : []}],
-    slotsBooked : [],
+    slotsBooked : []
     
 },{ timestamps : true});
 mongoose.model("Customer",CustomerSchema);

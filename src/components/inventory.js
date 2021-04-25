@@ -10,53 +10,61 @@ import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 
 class Inventory extends Component {
-    state = {  }
     constructor(props) {
         super(props);
     
         this.state = { systems:[],
             workstation:{}};
-
+        this.bookSlot = this.bookSlot.bind(this);
       }
-      
-    componentDidMount() {
-        const apiUrl = 'http://localhost:5000/workstation/';
-        fetch(apiUrl)
-          .then((response) => response.json())
-          .then((data) => this.setState({systems: data.slice(0)}));
-      }
-      onDelete(d){
+    //'http://localhost:5000/workstation'
+     onDelete(d){
         console.log(d);
         console.log(d._id);
         axios.delete(`http://localhost:5000/workstation/${d._id}`)
     .then(res => {
       console.log(res);
       console.log(res.data);
-      axios.get(`http://localhost:5000/workstation/`)
+       axios.get(`http://localhost:5000/workstation/`)
     .then(res => {
       const systems = res.data;
       this.setState({ systems:systems });
     })
     })
+  }
+    componentDidMount() {
+        const apiUrl = 'http://localhost:5000/workstation/';
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => this.setState({systems: data.slice(0)}));
+      }
+      bookSlot(msg,num){
+        //   this.setState({workstation:d});
+        if(msg.slots[num].isBooked){alert("Slot not available");
+        return}
+        alert("Pay Rs."+msg.rent+" to confirm booking.")
+        alert("Slot Booked!")
+        console.log(typeof(num));
+            console.log(msg.slots[num].isBooked);
+            let msg1= msg;
+            msg1.slots[num].isBooked=true;
+            console.log(msg1);
+            console.log(msg1._id);
+            axios.post('http://localhost:5000/workstation/update/'+msg1._id,msg1)
+           .then(res => console.log(res.data));
       }
       onSubmit = () => {
-        if(document.getElementById("name").value!="" && document.getElementById("type").value!="" ){
-         let pict="";
-          let type=document.getElementById("type").value
-         if(type=="PC"){
-             pict="https://www.designbust.com/download/437/png/gaming_pc_transparent_icon256.png"
-         }else if(type=="Console"){
-            pict="https://www.designbust.com/download/464/png/sony_playstation_transparent256.png"
-        }else{
-             alert("please type PC or Console in type of system field")
-             document.getElementById("type").value=""
-             return;
-         }
+        var name=document.getElementById("name").value
+        var pic=document.getElementById("pic").value
+        var type= document.getElementById("type").value
+        var rent=document.getElementById("rent").value
+        if(name!=""&&type!=""&&rent!="" ){
+         
         const newRequest ={
-          name: document.getElementById("name").value,
-          pic: pict,
-          type: document.getElementById("type").value
-
+          name: name,
+          pic: pic,
+          type: type,
+            rent: Number(rent)
         }
         axios.post('http://localhost:5000/workstation/add',newRequest)
              .then(res => console.log(res.data));
@@ -75,8 +83,10 @@ class Inventory extends Component {
         return (
 
                 <div>
-                <ul id="removeBullets" className="productGrid flex-container wrap"> <Navbar2 />
-                <h3>This will be the Inventory page!</h3>
+                <Navbar2 />
+                <div>
+                <ul id="removeBullets" className="productGrid flex-container wrap"> 
+                {/* <h3>This will be the Inventory page!</h3> */}
                 {data.map((d) => {
              return(
             <li  className="flex-item ">
@@ -92,18 +102,18 @@ class Inventory extends Component {
                        )
                     })}
                 </DropdownButton>
-                <Button  onClick={() =>this.onDelete(d)} href="/"  className="btn " type="submit">
-                 Delete
-               </Button>
+                <Button onClick={() =>this.onDelete(d)} className="btn">Delete Worktation</Button>
             </li>)
         })}</ul>
-
+            </div>
             <div>
             <form >
                 <label>Name of Workstation to be added</label>
             <input type="text" id="name" />
             <label>Add type of workstation</label>
             <input type="text" id="type" />
+            <label>pic url</label>
+            <input type="text" id="pic" />
             <label>Rent amount</label>
             <input type="text" id="rent" />
             <Button href="/inventory" onClick={this.onSubmit} className="btn" type="submit">Add system</Button>
@@ -113,5 +123,6 @@ class Inventory extends Component {
         );
     }
 }
+  
  
 export default Inventory;
