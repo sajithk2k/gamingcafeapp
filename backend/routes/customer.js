@@ -35,8 +35,8 @@ router.post("/register", (req, res) => {
     return res.status(400).json({ msg: "Password should be atleast 6 characters long" });
   }
 
-  Customer.findOne({ email: email }).then((user) => {
-    if (user) return res.status(400).json({ msg: "User already exists" });
+  // Customer.findOne({ email: email }).then((user) => {
+  //   if (user) return res.status(400).json({ msg: "User already exists" });
 
     //New User created
     const newUser = new Customer({
@@ -73,19 +73,19 @@ router.post("/login", (req, res) => {
     return res.status(400).json({ msg: "Please enter all fields" });
   }
   //check for existing user
-  Customer.findOne({ email }).then((user) => {
-    if (!user) return res.status(400).json({ msg: "User does not exist" });
+  // Customer.findOne({ email }).then((user) => {
+  //   if (!user) return res.status(400).json({ msg: "User does not exist" });
 
-    // Validate password
-    bcrypt.compare(password, user.password).then((isMatch) => {
-      if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+  //   // Validate password
+  //   bcrypt.compare(password, user.password).then((isMatch) => {
+  //     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
 
-      const sessUser = { id: user.id, name: user.name, email: user.email };
-      req.session.user = sessUser; // Auto saves session data in mongo store
+  //     const sessUser = { id: user.id, name: user.name, email: user.email };
+  //     req.session.user = sessUser; // Auto saves session data in mongo store
 
-      res.json({ msg: " Logged In Successfully", auth : true ,sessUser }); // sends cookie with sessionID automatically in response
-    });
-  });
+  //     res.json({ msg: " Logged In Successfully", auth : true ,sessUser }); // sends cookie with sessionID automatically in response
+  //   });
+  // });
 });
 router.post("/glogin", (req, res) => {
   const { email, Name } = req.body;
@@ -96,24 +96,24 @@ router.post("/glogin", (req, res) => {
   // }
   //check for existing user
   let sessUser = {};
-  Customer.findOne({ email }).then((user) => {
-    if (!user){
-      const name = req.body.name;
-      const email = req.body.email;
-      const slotsBooked = [];
-      const newCustomer = new Customer({name,email,slotsBooked});
+  // Customer.findOne({ email }).then((user) => {
+  //   if (!user){
+  //     const name = req.body.name;
+  //     const email = req.body.email;
+  //     const slotsBooked = [];
+  //     const newCustomer = new Customer({name,email,slotsBooked});
 
-      newCustomer.save()
-        .then(() => res.json('Customer added!'+ req.body))
-        .catch(err => res.status(400).json('Error: ' + err));
+  //     newCustomer.save()
+  //       .then(() => res.json('Customer added!'+ req.body))
+  //       .catch(err => res.status(400).json('Error: ' + err));
       
-      sessUser = {name,email};
-    }
+  //     sessUser = {name,email};
+  //   }
 
-    else{
-      sessUser = { name: user.name, email: user.email };
-      // Auto saves session data in mongo store
-    }
+  //   else{
+  //     sessUser = { name: user.name, email: user.email };
+  //     // Auto saves session data in mongo store
+  //   }
       
     req.session.user = sessUser;
     
