@@ -58,6 +58,20 @@ export const isAuth = () => {
         }
     }
 };
+export const isAdmin = () => {
+    if (window !== 'undefined') {
+        const cookieChecked = getCookie('token');
+        if (cookieChecked) {
+            if (localStorage.getItem('user')) {
+
+                const admin = JSON.parse(localStorage.getItem('user'));
+                return admin.name == 'Ashwin Kumar Raja';
+            } else {
+                return false;
+            }
+        }
+    }
+};
 
 export const signout = (next) => {
     removeCookie('token');
