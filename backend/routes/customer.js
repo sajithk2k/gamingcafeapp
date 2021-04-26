@@ -104,15 +104,9 @@ router.post("/glogin", (req, res) => {
       const newCustomer = new Customer({name,email,slotsBooked});
 
       newCustomer.save()
-        .then(() => res.json('Customer added!'+ req.body))
-        .catch(err => res.status(400).json('Error: ' + err));
-        Customer.findOne({ email }).then((user) => {
-          if(user){
-            sessUser = { name: user.name, email: user.email };
-          }else{
-            sessUser={};
-          }
-        })
+        //  .then(() => res.json('Customer added!'+ req.body))
+        //  .catch(err => res.status(400).json('Error: ' + err));
+        sessUser = {name : name ,email : email}; 
 
     }
 

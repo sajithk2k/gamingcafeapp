@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import LogoutButton from './logoutbutton.js';
+import { authenticate, isAuth ,signout,getCookie } from '../auth/helpers';
 class Navbar extends Component {
+   
     render() { 
         return ( <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
@@ -20,6 +24,10 @@ class Navbar extends Component {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/profile">Profile</a>
+                
+              </li >
+              <li className="nav-item">
+                <LogoutButton/>
               </li>
             </ul>
           </div>

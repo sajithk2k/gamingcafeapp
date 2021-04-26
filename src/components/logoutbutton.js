@@ -1,13 +1,14 @@
+
 import React, { Component ,useContext,useState } from 'react';
 import Navbar2 from './navbar2.js';
 import axios from 'axios';
 import AuthApi from '../utils/AuthApi';
 import UserBooking from'./userbooking.js';
-import LogoutButton from './logoutbutton.js';
+
 import { authenticate, isAuth ,signout,getCookie } from '../auth/helpers';
 import { useHistory } from 'react-router-dom';
 import cookie from 'js-cookie';
-export default function Profile() {
+export default function LogoutButton() {
     let history = useHistory();
     // const authApi = useContext(AuthApi);
     const cust = cookie.get('user');
@@ -25,14 +26,8 @@ export default function Profile() {
       });
     };
     return (
-      <div>
-        <h1>Hi {String(mer.name)}!</h1>
-
-        <LogoutButton/>
-          
-          {/* <button onClick={handleSignout}>Logout</button> */}
+         <button onClick={handleSignout}>Logout</button>
         
-        <UserBooking userEmail={email}/>
-      </div>
     );
   }
+ 
