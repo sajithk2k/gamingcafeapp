@@ -95,19 +95,22 @@ router.post("/glogin", (req, res) => {
   //   return res.status(400).json({ msg: "Please enter all fields" });
   // }
   //check for existing user
-  let sessUser = {};
+  try
+  {
+    let sessUser = {};
   Customer.findOne({ email }).then((user) => {
     if (!user){
       const name = req.body.name;
       const email = req.body.email;
       const slotsBooked = [];
       const newCustomer = new Customer({name,email,slotsBooked});
-
+      console.log(newCustomer);
       newCustomer.save()
-        .then(() => res.json('Customer added!'+ req.body))
-        .catch(err => res.status(400).json('Error: ' + err));
-      
-      sessUser = {name,email};
+  
+        
+      // console.log(name + email)
+      sessUser = {name : name ,email : email};
+      // console.log(sessUser);
     }
 
     else{
@@ -115,7 +118,7 @@ router.post("/glogin", (req, res) => {
       // Auto saves session data in mongo store
     }
       
-    req.session.user = sessUser;
+    // req.session.user = sessUser;
     
     // const payload = { id: user.id, name: user.name, email: user.email  };
     // jwt.sign(
@@ -129,9 +132,14 @@ router.post("/glogin", (req, res) => {
     //   }
     // );
 
-
+    console.log(sessUser)
+    console.log("HERE");
     res.json({ msg: " Logged In Successfully", sessUser }); // sends cookie with sessionID automatically in response
     });
+  }
+  catch(err){
+    res.json({ msg : "Well"});
+  }
 });
 router.delete("/logout", (req, res) => {
   console.log(req.session)
