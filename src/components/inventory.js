@@ -18,7 +18,6 @@ class Inventory extends Component {
             workstation:{}};
         this.bookSlot = this.bookSlot.bind(this);
       }
-    //'http://localhost:5000/workstation'
      onDelete(d){
         console.log(d);
         console.log(d._id);
