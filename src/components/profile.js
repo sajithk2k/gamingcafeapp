@@ -3,6 +3,7 @@ import Navbar2 from './navbar2.js';
 import axios from 'axios';
 import AuthApi from '../utils/AuthApi';
 import UserBooking from'./userbooking.js';
+import Navbar from './navbar.js';
 // class Dashboard extends Component {
 //     state = {  }
 //     render() { 
@@ -36,6 +37,7 @@ export default function Profile() {
     };
     return (
       <div>
+        <Navbar />
         <h1>Hi {String(mer.name)}!</h1>
         {/* <div>{String(cust)}</div> */}
         <button onClick={handleSignout}>Logout</button>
