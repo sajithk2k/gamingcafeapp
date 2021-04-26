@@ -1,7 +1,8 @@
-import React, { Component ,useContext } from 'react';
+import React, { Component ,useContext,useState } from 'react';
 import Navbar2 from './navbar2.js';
 import axios from 'axios';
 import AuthApi from '../utils/AuthApi';
+import UserBooking from'./userbooking.js';
 // class Dashboard extends Component {
 //     state = {  }
 //     render() { 
@@ -23,6 +24,8 @@ export default function Profile() {
     const mer = JSON.parse(localStorage.getItem('user'));
     console.log(cust)
     console.log(mer)
+    console.log("Printing Email:",mer.email);
+    const [email, setEmail] = useState(mer.email);
     const handleSignout = () => {
         // console.log("asd " + authApi.auth  
       signout(() => {
@@ -36,7 +39,7 @@ export default function Profile() {
         <h1>Hi {String(mer.name)}!</h1>
         {/* <div>{String(cust)}</div> */}
         <button onClick={handleSignout}>Logout</button>
-
+        <UserBooking userEmail={email}/>
       </div>
     );
   }
