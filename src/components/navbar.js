@@ -9,14 +9,17 @@ class Navbar extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link" aria-current="page" href="#">Sign Up</a>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <a className="nav-link" href="/signin">Login</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/booking">Book Slots</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/custrequest">Make a Request</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/profile">Profile</a>

@@ -6,6 +6,7 @@ import SignUp from '../components/signupform';
 import DashBoard from '../components/dashboard';
 import Booking from '../components/booking'
 import Profile from '../components/profile'
+import CustomerRequest from'../components/custrequest'
 // import AuthApi from '../utils/AuthApi';
 import Navbar2 from '../components/navbar2'
 import { authenticate, isAuth , isAdmin } from '../auth/helpers';
@@ -47,6 +48,11 @@ function Routes() {
       <RouteProtected
         path="/booking"
         component={Booking}
+        // auth={authApi.auth}
+      />
+      <RouteProtected
+        path="/custrequest"
+        component={CustomerRequest}
         // auth={authApi.auth}
       />
       <RouteProtected
