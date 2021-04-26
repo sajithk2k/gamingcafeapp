@@ -127,6 +127,8 @@ class Booking extends Component {
            .then(res => console.log(res.data));
 
 
+
+
            const mer = JSON.parse(localStorage.getItem('user'));
            const userEmail = mer.email;
            const bookedSlot = {date : date , workstation : msg.name , time : msg.slots[num].startTime}
@@ -134,6 +136,7 @@ class Booking extends Component {
             console.log(newSlot)
            await axios.post('http://localhost:5000/customer/bookSlot',newSlot).then(res => console.log(res.data));
            
+
            const apiUrl = 'http://localhost:5000/workstation/';
            fetch(apiUrl)
              .then((response) => response.json())
@@ -168,7 +171,11 @@ class Booking extends Component {
         date7.setDate(date1.getDate()+6);
         // console.log(data[0]);
         return ( <div>
+
+            <Navbar />
+
             {/* <Navbar /> */}
+
             <DropdownButton id="dropdown-basic-button" title="Select a Date">
         <Dropdown.Item  onClick={() =>this.toDate(date1.toISOString().slice(0, 10))} className = {'green-color'}>{date1.toISOString().slice(0, 10)}</Dropdown.Item>
         <Dropdown.Item  onClick={() =>this.toDate(date2.toISOString().slice(0, 10))}  className = {'green-color'}>{date2.toISOString().slice(0, 10)}</Dropdown.Item>

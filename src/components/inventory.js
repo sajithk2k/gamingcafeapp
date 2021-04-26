@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './inventory.css';
 import Navbar2 from './navbar2.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -84,7 +85,24 @@ class Inventory extends Component {
 
                 <div>
                 <Navbar2 />
+
+                <div class="contact-form" >
+                <div class="textbox"><input type="text" placeholder="Name of workstation" id="name" /></div>
+            
+
+            <div class="textbox">
+            <input type="text" placeholder="Type of workstation" id="type" />
+            </div>
+        
+            <div class="textbox"><input type="text" placeholder="Url of picture of workstation" id="pic" /></div>
+            <div class="textbox"><input type="text" placeholder="Rent" id="rent" /></div>
+            
+            <Button href="/inventory" onClick={this.onSubmit} className="btn" type="submit">Add system</Button>
+            </div>
+                <div style ={{position:"absolute", left:"80px", top:"700px"}}>
+
                 <div>
+
                 <ul id="removeBullets" className="productGrid flex-container wrap"> 
                 {/* <h3>This will be the Inventory page!</h3> */}
                 {data.map((d) => {
@@ -105,20 +123,11 @@ class Inventory extends Component {
                 <Button onClick={() =>this.onDelete(d)} className="btn">Delete Worktation</Button>
             </li>)
         })}</ul>
+
             </div>
-            <div>
-            <form >
-                <label>Name of Workstation to be added</label>
-            <input type="text" id="name" />
-            <label>Add type of workstation</label>
-            <input type="text" id="type" />
-            <label>pic url</label>
-            <input type="text" id="pic" />
-            <label>Rent amount</label>
-            <input type="text" id="rent" />
-            <Button href="/inventory" onClick={this.onSubmit} className="btn" type="submit">Add system</Button>
-            </form>
-            </div>
+
+            
+
             </div>
         );
     }
