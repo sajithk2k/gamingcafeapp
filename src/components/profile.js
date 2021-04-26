@@ -4,6 +4,7 @@ import axios from 'axios';
 import AuthApi from '../utils/AuthApi';
 import UserBooking from'./userbooking.js';
 import LogoutButton from './logoutbutton.js';
+import Navbar from './navbar.js';
 import { authenticate, isAuth ,signout,getCookie } from '../auth/helpers';
 import { useHistory } from 'react-router-dom';
 import cookie from 'js-cookie';
@@ -26,6 +27,7 @@ export default function Profile() {
     };
     return (
       <div>
+        <Navbar />
         <h1>Hi {String(mer.name)}!</h1>
 
         <LogoutButton/>
