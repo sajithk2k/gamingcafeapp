@@ -12,7 +12,7 @@ router.route('/add').post((req, res) => {
   const workStationID = req.body.workStationID;
   const staffID = req.body.staffID;
  
-  const newReport = new Report({report,workStationID,staffID);
+  const newReport = new Report({report,workStationID,staffID});  
 
   newReport.save()
     .then(() => res.json('Report added!'+ req.body))
