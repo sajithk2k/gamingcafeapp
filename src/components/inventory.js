@@ -85,7 +85,20 @@ class Inventory extends Component {
 
                 <div>
                 <Navbar2 />
-                <div>
+                <div class="contact-form" >
+                <div class="textbox"><input type="text" placeholder="Name of workstation" id="name" /></div>
+            
+
+            <div class="textbox">
+            <input type="text" placeholder="Type of workstation" id="type" />
+            </div>
+        
+            <div class="textbox"><input type="text" placeholder="Url of picture of workstation" id="pic" /></div>
+            <div class="textbox"><input type="text" placeholder="Rent" id="rent" /></div>
+            
+            <Button href="/inventory" onClick={this.onSubmit} className="btn" type="submit">Add system</Button>
+            </div>
+                <div style ={{position:"absolute", left:"80px", top:"700px"}}>
                 <ul id="removeBullets" className="productGrid flex-container wrap"> 
                 {/* <h3>This will be the Inventory page!</h3> */}
                 {data.map((d) => {
@@ -107,19 +120,9 @@ class Inventory extends Component {
             </li>)
         })}</ul>
             </div>
-            <div>
-            <div class="contact-form" >
-                <label>Name of Workstation to be added</label>
-            <input type="text" id="name" />
-            <label>Add type of workstation</label>
-            <input type="text" id="type" />
-            <label>pic url</label>
-            <input type="text" id="pic" />
-            <label>Rent amount</label>
-            <input type="text" id="rent" />
-            <Button href="/inventory" onClick={this.onSubmit} className="btn" type="submit">Add system</Button>
-            </div>
-            </div>
+
+            
+
             </div>
         );
     }
