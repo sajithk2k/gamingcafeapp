@@ -11,7 +11,7 @@ import Navbar2 from '../components/navbar2'
 import { authenticate, isAuth , isAdmin } from '../auth/helpers';
 import Inventory from '../components/inventory';
 import Request from '../components/request'
-
+import SignIn2 from '../components/loginform2'
 // <Route path ="/login" component = {LoginForm} />
 //         <Route path ="/booking" component = {Booking} />
 //         <Route path ="/dashboard" component = {Dashboard} />
@@ -27,6 +27,11 @@ function Routes() {
       <RouteRegisteration
         path="/signin"
         component={SignIn}
+        // auth={authApi.auth}
+      />
+      <RouteRegisterationAdmin
+        path="/adminsignin"
+        component={SignIn2}
         // auth={authApi.auth}
       />
       <RouteRegisteration
@@ -92,7 +97,19 @@ const RouteRegisteration = ({ component: Component, ...rest }) => {
       <Route
         {...rest}
         render={(props) =>
-          !isAuth() ? <Component {...props} /> : <Redirect to="/booking" />
+          //(!isAdmin() ? <Component {...props} /> : <Redirect to="/dashboard" />)
+          (!isAuth() ? <Component {...props} /> : <Redirect to="/booking" />)
+        }
+      />
+    );
+  };
+  const RouteRegisterationAdmin = ({ component: Component, ...rest }) => {
+    
+    return (
+      <Route
+        {...rest}
+        render={(props) =>
+          !isAdmin() ? <Component {...props} /> : <Redirect to="/dashboard" />
         }
       />
     );

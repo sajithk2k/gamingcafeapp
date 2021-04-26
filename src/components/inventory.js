@@ -85,7 +85,6 @@ class Inventory extends Component {
 
                 <div>
                 <Navbar2 />
-
                 <div class="contact-form" >
                 <div class="textbox"><input type="text" placeholder="Name of workstation" id="name" /></div>
             
@@ -100,9 +99,6 @@ class Inventory extends Component {
             <Button href="/inventory" onClick={this.onSubmit} className="btn" type="submit">Add system</Button>
             </div>
                 <div style ={{position:"absolute", left:"80px", top:"700px"}}>
-
-                <div>
-
                 <ul id="removeBullets" className="productGrid flex-container wrap"> 
                 {/* <h3>This will be the Inventory page!</h3> */}
                 {data.map((d) => {
@@ -123,7 +119,6 @@ class Inventory extends Component {
                 <Button onClick={() =>this.onDelete(d)} className="btn">Delete Worktation</Button>
             </li>)
         })}</ul>
-
             </div>
 
             

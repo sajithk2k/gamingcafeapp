@@ -22,7 +22,7 @@ function App() {
     <AuthApi.Provider value={{ auth, setAuth }}>
     <Router>
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         {/* <LoginForm />
         <SignUpForm /> */}
         <Routes/>

@@ -5,7 +5,7 @@ import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import AuthApi from '../utils/AuthApi';
 
-import { authenticate, isAdmin, isAuth } from '../auth/helpers';
+import { authenticate, isAuth } from '../auth/helpers';
 
 // class LoginForm extends Component {
   
@@ -52,7 +52,7 @@ import { authenticate, isAdmin, isAuth } from '../auth/helpers';
 //           );
 //     }
 // }
-export default function LoginForm({ history }) {
+export default function LoginForm2({ history }) {
   // const authApi = useContext(AuthApi)
   const [values, setValues] = useState({
     email: '',
@@ -72,13 +72,9 @@ export default function LoginForm({ history }) {
        authenticate(response,customer, () => {
         setValues({ ...values, name: '', email: '' });
         // toast.success(`Hey ${response.data.user.name}, Welcome back!`);
-        //history.push('/booking')
-        // isAuth() && isAuth().role === 'admin' ? history.push('/admin') : history.push('/private');
-        if(isAdmin()){
-          history.push('/dashboard')
-        }else{
-          history.push('/booking')
-        }
+        history.push('/dashboard')
+        //isAuth() && isAuth().role === 'admin' ? history.push('/admin') : history.push('/private');
+        
       });
       //  authApi.setAuth(true);
   }
